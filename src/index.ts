@@ -9,7 +9,11 @@ import invoiceRoute from './routes/invoice.route'
 const app = express()
 const port = 8080
 databaseService.connect().catch(console.dir)
-app.use(cors())
+app.use(
+  cors({
+    origin: '*'
+  })
+)
 app.use(express.json())
 app.use('/users', usersRouter)
 app.use('/tickets', ticketRouter)
