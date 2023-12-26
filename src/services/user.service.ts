@@ -24,8 +24,9 @@ class UsersService {
         _id: new ObjectId(user_id)
       })
     )
+    const user = await databaseService.user.findOne({ _id: new ObjectId(user_id) })
     const access_token = await this.signAccessToken({ user_id })
-    return { access_token }
+    return { access_token, user }
   }
   async login({ user_id }: { user_id: string }) {
     const access_token = await this.signAccessToken({ user_id })
