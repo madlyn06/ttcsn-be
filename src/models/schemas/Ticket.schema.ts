@@ -5,7 +5,8 @@ interface TicketType {
   _id?: ObjectId
   departure: string
   destination: string
-  quantity: number
+  departure_time: string
+  destination_time: string
   price: string
   date: number
   created_at?: Date
@@ -13,18 +14,20 @@ interface TicketType {
 }
 export class Ticket {
   _id: ObjectId
+  departure_time: string
+  destination_time: string
   departure: string
   destination: string
-  quantity: number
   price: string
   date: number
   created_at: Date
   updated_at: Date
   constructor(ticket: TicketType) {
     this._id = ticket._id || new ObjectId()
+    this.departure_time = ticket.departure_time
+    this.destination_time = ticket.destination_time
     this.departure = ticket.departure
     this.destination = ticket.destination
-    this.quantity = ticket.quantity
     this.price = ticket.price
     this.date = ticket.date || new Date().getTime()
     this.created_at = ticket.created_at || new Date()
