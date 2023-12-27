@@ -48,13 +48,14 @@ class TicketService {
   }
 
   async searchTicket(payload: any) {
+    const { departure, destination, date } = payload
     const result = await databaseService.ticket
       .aggregate([
         {
           $match: {
-            departure: 'Vinh',
-            destination: 'Đà Nẵng',
-            date: 1703030400000
+            departure: departure,
+            destination: destination,
+            date: date
           }
         }
       ])
