@@ -9,7 +9,7 @@ class TicketService {
     const result = await databaseService.ticket.insertOne(
       new Ticket({
         ...payload,
-        date: new Date(payload.date)
+        date: new Date(payload.date).getTime()
       })
     )
     return { result }
@@ -36,7 +36,7 @@ class TicketService {
       {
         $set: {
           ...payload,
-          date: new Date(payload.date)
+          date: new Date(payload.date).getTime()
         }
       }
     )
@@ -49,6 +49,7 @@ class TicketService {
 
   async searchTicket(payload: any) {
     const { departure, destination, date } = payload
+    console.log({ departure, destination, date })
     const result = await databaseService.ticket
       .aggregate([
         {

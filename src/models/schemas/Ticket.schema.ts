@@ -7,7 +7,7 @@ interface TicketType {
   destination: string
   quantity: number
   price: string
-  date: Date
+  date: number
   created_at?: Date
   updated_at?: Date
 }
@@ -17,7 +17,7 @@ export class Ticket {
   destination: string
   quantity: number
   price: string
-  date: Date
+  date: number
   created_at: Date
   updated_at: Date
   constructor(ticket: TicketType) {
@@ -26,7 +26,7 @@ export class Ticket {
     this.destination = ticket.destination
     this.quantity = ticket.quantity
     this.price = ticket.price
-    this.date = ticket.date || new Date()
+    this.date = ticket.date || new Date().getTime()
     this.created_at = ticket.created_at || new Date()
     this.updated_at = ticket.updated_at || new Date()
   }
