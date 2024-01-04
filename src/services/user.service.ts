@@ -30,7 +30,8 @@ class UsersService {
   }
   async login({ user_id }: { user_id: string }) {
     const access_token = await this.signAccessToken({ user_id })
-    return { access_token }
+    const user = await databaseService.user.findOne({ _id: new ObjectId(user_id) })
+    return { access_token, user }
   }
 
   async getAllUser() {

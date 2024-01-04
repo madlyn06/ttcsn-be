@@ -12,6 +12,12 @@ export const getAllInvoiceController = async (req: Request, res: Response, next:
   const result = await invoiceService.getAllInvoice()
   return res.json({ message: 'Get all invoice success', result })
 }
+
+export const getAllMyTicketController = async (req: Request, res: Response, next: NextFunction) => {
+  const { user_id } = req.decoded_access_token as TokenPayLoad
+  const result = await invoiceService.getAllMyTicket(user_id)
+  return res.json({ message: 'Get all my ticket success', result })
+}
 export const confirmInvoiceController = async (req: Request, res: Response, next: NextFunction) => {
   const { id } = req.params
   const result = await invoiceService.confirmInvoice(id)
